@@ -20,9 +20,9 @@ export default {
   data(){
 	this.date = undefined; 
 	this.dateFromPointer = undefined ; 
-  return {
+	this.timer = 0 ; 
+return {
 	elapsedTime:0 , 
-	timer:undefined , 
 
  }
  
@@ -35,8 +35,7 @@ export default {
 			this.date = new Date(null) ; 
 		else
 			this.date = this.dateFromPointer ;  
-		this.date.setSeconds(this.elapsedTime/1000) ;
-	
+		this.date.setSeconds(this.elapsedTime/1000) ;	
 		var milliseconds = this.elapsedTime ; 
 	   	var day, hour, minute, seconds;
    		 seconds = Math.floor(milliseconds / 1000);
@@ -68,18 +67,19 @@ export default {
 			this.elapsedTime = diff ; 
 
 		}
-		this.timer = setInterval(() => {
-			this.elapsedTime += 1000 ; 
+		if(this.timer === 0){
+			this.timer = setInterval(() => {
+				this.elapsedTime += 1000 ; 
 
-		} , 1000) ; 
-		
-		
-
+			} , 1000) ; 
+		}	
 	},
-
+	
+	
 	stopTimer(){
 		clearInterval(this.timer) ; 
-		this.elapsedTime=0 ; 
+		this.elapsedTime=0 ;
+		this.timer = 0 ;  
 		this.dateFromPointer = undefined ; 
 	},
 	setDateFromPointer(date){
