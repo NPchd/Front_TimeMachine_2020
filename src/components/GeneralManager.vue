@@ -29,13 +29,13 @@ export default {
           user_id:null
         }
     },
-    mounted(){
+    mounted() {
         Vue.axios.get('http://localhost:8081/api/users/all')
         .then(response => {
             this.listUsers = response.data.data
         })
     },
-    methods:{
+    methods: {
         removeUser: function(user_id) {
             Vue.axios.delete('http://localhost:8081/api/users/' + user_id)
             .then(reponse => console.log(reponse))
@@ -59,7 +59,7 @@ export default {
                 this.$forceUpdate();
                 console.log(response);
             })
-            this.$forceUpdate()
+            this.$forceUpdate();
         }
     }
 }

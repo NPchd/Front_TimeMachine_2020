@@ -7,14 +7,14 @@
 </template>
 
 <script>
-import ManageTeam from '../components/ManageTeam.vue'
-import ModifierInfos from '../components/ModifierInfos.vue'
+    import ManageTeam from '../components/ManageTeam.vue'
+    import ModifierInfos from '../components/ModifierInfos.vue'
 
-export default {
-    name:'Manager',
-    components: {
-        ManageTeam,
-        ModifierInfos
-  }
-}
+    export default {
+        name:'Manager',
+        components: {
+            ManageTeam,
+            ModifierInfos
+        }
+    }
 </script>

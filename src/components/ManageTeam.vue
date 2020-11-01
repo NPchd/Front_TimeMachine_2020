@@ -13,44 +13,43 @@
 </template>
 
 <script>
+    import Vue from 'vue'
+    import axios from 'axios'
+    import VueAxios from 'vue-axios'
+    import Cookies from 'js-cookie'
 
-import Vue from 'vue'
-import axios from 'axios'
-import VueAxios from 'vue-axios'
-import Cookies from 'js-cookie'
+    Vue.use(VueAxios,axios)
 
-Vue.use(VueAxios,axios)
-export default {
-    name: 'ManageTeam',
-    data(){
-        return {
-          list:'',
-          team:''
-        }
-    },
-    mounted(){
-        var cookie_id = Cookies.get("id_cookies");
-        Vue.axios.get('http://localhost:8080/api/users/teams/'+cookie_id)
-        .then(reponse => {
-            console.log(reponse)
-            this.list = reponse.data.data
-        })       
-    },
-    methods:{
-        Remove_User(item){
-            var user={
-                email : item.attributes.email,
-                role_id : item.attributes.role_id,
-                team_id : null,
-                username : item.attributes.username
+    export default {
+        name: 'ManageTeam',
+        data() {
+            return {
+              list:'',
+              team:''
             }
-            Vue.axios.put('http://localhost:8080/api/users/'+item.id,
-            {
-                user
+        },
+        mounted() {
+            var cookie_id = Cookies.get("id_cookies");
+            Vue.axios.get('http://localhost:8080/api/users/teams/' + cookie_id)
+            .then(reponse => {
+                console.log(reponse)
+                this.list = reponse.data.data
+            })
+        },
+        methods: {
+            Remove_User(item) {
+                var user = {
+                    email: item.attributes.email,
+                    role_id: item.attributes.role_id,
+                    team_id: null,
+                    username: item.attributes.username
+                }
+                Vue.axios.put('http://localhost:8080/api/users/' + item.id,
+                {
+                    user
+                })
+                .then(reponse => console.log(reponse))
             }
-            )
-            .then(reponse=>console.log(reponse))
         }
     }
-}
 </script>

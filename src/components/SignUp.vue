@@ -31,24 +31,24 @@
     name: 'app',
     data() {
       return {
-        form : {
-          username:null,
-          email:null
+        form: {
+          username: null,
+          email: null
         }
       }
     },
-    methods:{
+    methods: {
       submitUser: function() {
         Vue.axios.post('http://localhost:8080/api/users',
         {
-          user : {
+          user: {
             username: this.form.username,
             email: this.form.email,
             role_id: 3
           }
         },
         {
-          headers:{
+          headers: {
             "Content-type": "application/json"
           }
         })
@@ -60,7 +60,7 @@
         })
       },
       checkForm: function() {
-        this.errors= [];
+        this.errors = [];
 
         if (!this.form.username) {
           this.errors.push("Username required.")
