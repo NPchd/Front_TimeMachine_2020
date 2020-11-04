@@ -59,8 +59,8 @@
                             Cookies.set("id_cookies", this.id);
                             document.location.href = "http://localhost:8080/general_manager", "_blank";
                         } else if (this.role === 2) {
-                            Cookies.set("id_cookies", this.id);
-                            document.location.href = "http://localhost:8080/manager", "_blank";
+                            Cookies.set("id_cookies", this.id);   
+                            this.$router.push({ name: 'Manager' , params:{ userId : this.id}}) ; 
                         } else if(this.role === 3) {
                             Cookies.set("id_cookies", this.id);
                             this.$router.push({ name: 'dashboard' , params:{ userId : this.id}}) ; 

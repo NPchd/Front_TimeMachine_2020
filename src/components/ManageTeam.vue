@@ -5,7 +5,7 @@
                 <td>Username</td>
             </tr>
             <tr v-for="item in list" v-bind:key="item.id">
-                <a href='http://localhost:8080/api/users'>{{item.attributes.username}}</a>
+                <a href='http://localhost:4000/api/users'>{{item.attributes.username}}</a>
                 <td><button v-on:click="Remove_User(item)">Remove user {{item.id}}</button></td>
             </tr>
         </table>
@@ -30,7 +30,7 @@
         },
         mounted() {
             var cookie_id = Cookies.get("id_cookies");
-            Vue.axios.get('http://localhost:8080/api/users/teams/' + cookie_id)
+            Vue.axios.get('http://localhost:4000/api/users/teams/' + cookie_id)
             .then(reponse => {
                 console.log(reponse)
                 this.list = reponse.data.data
@@ -44,7 +44,7 @@
                     team_id: null,
                     username: item.attributes.username
                 }
-                Vue.axios.put('http://localhost:8080/api/users/' + item.id,
+                Vue.axios.put('http://localhost:4000/api/users/' + item.id,
                 {
                     user
                 })
