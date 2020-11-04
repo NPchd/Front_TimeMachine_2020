@@ -28,7 +28,7 @@
   Vue.use(VueAxios, axios)
 
   export default {
-    name: 'app',
+    name: 'SignUp',
     data() {
       return {
         form: {
@@ -39,7 +39,7 @@
     },
     methods: {
       submitUser: function() {
-        Vue.axios.post('http://localhost:8080/api/users',
+        Vue.axios.post('http://localhost:4000/api/users',
         {
           user: {
             username: this.form.username,

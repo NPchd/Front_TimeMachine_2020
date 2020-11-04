@@ -1,15 +1,16 @@
 <template>
   <div id="app">
-	<dashboard/>
+	<router-view/>
   </div>
 </template>
 
 <script>
 import dashboard from './components/DashBoard.vue'
+import login from './components/Accueil_Login.vue'
 export default {
   name: 'App',
   components: {
-	dashboard
+	login,
   }
 }
 </script>

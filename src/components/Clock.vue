@@ -29,15 +29,15 @@
 					this.date = new Date(null);
 				else
 					this.date = this.dateFromPointer ;
-					this.date.setSeconds(this.elapsedTime/1000);
-					var milliseconds = this.elapsedTime;
+				this.date.setSeconds(this.elapsedTime/1000);
+				var milliseconds = this.elapsedTime;
 				var day, hour, minute, seconds;
 				seconds = Math.floor(milliseconds / 1000);
 				minute = Math.floor(seconds / 60);
 					seconds = seconds % 60;
 				hour = Math.floor(minute / 60);
 				minute = minute % 60;
-			day = Math.floor(hour / 24);
+				day = Math.floor(hour / 24);
 				hour = hour % 24;
 					var format_sec = seconds < 10 ? '0' + seconds : seconds;
 					var format_min = minute < 10 ? '0' + minute : minute;
@@ -50,7 +50,6 @@
 		startTimer() {
 				if (this.dateFromPointer === undefined) {
 					this.elapsedTime = 0;
-					console.log('datefrompointer undefined');
 				} else {
 					var presentDateMs = new Date().getTime(); //time in MS
 					var clockDateMS = this.dateFromPointer.getTime();

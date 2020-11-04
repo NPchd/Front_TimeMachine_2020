@@ -24,22 +24,13 @@
 		return {
 			}
 		},
-		watch: {
-			'$route.params': {
-				handler(newVal) {
-					var id = newVal;
-					console.log(id);
-					this.fetchUser();
-				},
-			},
-			immediate: true,
-		},
+	  immediate: true,
 
 	  methods: {
 			fetchUser() {
 				//Si l'utilisateur est déja pointé mais que sa session est morte , l'horloge doit afficher le temps écoulé :
 				this.time = undefined ;
-			this.status_user = undefined;
+				this.status_user = undefined;
 				axios.get(SERVER_URL + 'api/clocks/' + this.$route.params.userId)
 				.then(response => {
 					this.status_user = response.data.data.attributes.status;
@@ -55,9 +46,7 @@
 						this.$refs.ref_clock.stopTimer();
 					}
 				})
-				.catch(error => {
-          console.log(error)
-        })
+				.catch(error => {console.log(error)}) ; 
 			},
 		onClick() {
 				axios.get(SERVER_URL + 'api/clocks/' + this.$route.params.userId)
@@ -111,12 +100,8 @@
 							.catch(error => {
 								console.log(error)
 							})
-						}),
-						this.$router.push({name: 'clock', params: {userId: this.$route.params.userId}})
-						.catch(error => {
-							if (error.name != 'NavigationDuplicated')
-								throw error;
 						})
+						
 					};
 				})
 			}

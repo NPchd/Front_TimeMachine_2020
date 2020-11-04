@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Acceuil_Login from '../components/Acceuil_Login.vue'
+import login from '../components/Accueil_Login.vue'
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Acceuil_Login',
-    component: Acceuil_Login
+    name: 'login',
+    component: login
   },
   {
     path: '/signup',
@@ -38,7 +38,7 @@ const routes = [
   },
 
   {
-   path: '/dashboard' ,
+   path: '/dashboard/:userId' ,
    name: 'dashboard',
    component: () => import ('../components/DashBoard.vue')
    },

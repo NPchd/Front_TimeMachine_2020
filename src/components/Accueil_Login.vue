@@ -14,9 +14,12 @@
             <tr>
                 <button v-on:click="Login({username_req, email_req})">Login</button>
             </tr>
-            <tr>
-                Don't have an account yet ? <a href="http://localhost:8080/signup">Create my account !</a>
+            <router-link to="/signup">
+	    <tr>
+                Don't have an account yet ? Create my account !</a>
             </tr>
+	    </router-link>
+
         </Center>
     </div>
 </template>
@@ -29,6 +32,7 @@
 
     Vue.use(VueAxios,axios)
     export default {
+  	name: 'login',  	
         data(){
             return{
                 email:'',
@@ -42,7 +46,7 @@
         methods:{
             async Login(a){
 
-                Vue.axios.get('http://localhost:8080/api/users?email='+a.email_req+'&username='+a.username_req)
+                Vue.axios.get('http://localhost:4000/api/users?email='+a.email_req+'&username='+a.username_req)
                 .then(reponse1 => {
                     console.log(reponse1)
                     this.username=reponse1.data.data.attributes.username

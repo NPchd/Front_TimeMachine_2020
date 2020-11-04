@@ -11,7 +11,6 @@
 		</div>
 		<pointer class="pointer"/>
 		<workingtimes @workingTimesArray="updateChart" id="workingtimes"/>
-		<userView class="userview"/>
 	</div>
 </template>
 
