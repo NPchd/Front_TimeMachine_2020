@@ -9,6 +9,7 @@
 <script>
 	import axios from 'axios'
 	import clock from './Clock.vue'
+	import Cookies from 'js-cookie' 
 	import moment from 'moment'
 	const SERVER_URL = 'http://localhost:4000/';
 
@@ -27,6 +28,7 @@
 	  immediate: true,
 
 	  methods: {
+	  		
 			fetchUser() {
 				//Si l'utilisateur est déja pointé mais que sa session est morte , l'horloge doit afficher le temps écoulé :
 				this.time = undefined ;
@@ -54,7 +56,6 @@
 					var response_data = response;
 					this.status_user = response.data.data.attributes.status;
 					var button = document.getElementById('pointer-button');
-					console.log(response);
 					if (this.status_user === false) {
 						var body = {
 							clock: {
@@ -95,7 +96,8 @@
 								headers
 							)
 							.then(response => {
-								console.log(response)
+								
+
 							})
 							.catch(error => {
 								console.log(error)

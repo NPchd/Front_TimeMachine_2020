@@ -63,8 +63,8 @@
                             document.location.href = "http://localhost:8080/manager", "_blank";
                         } else if(this.role === 3) {
                             Cookies.set("id_cookies", this.id);
-                            document.location.href = "http://localhost:8080/user", "_blank";
-                        }
+                            this.$router.push({ name: 'dashboard' , params:{ userId : this.id}}) ; 
+			}
                     }
                 })
                 .catch(error => {

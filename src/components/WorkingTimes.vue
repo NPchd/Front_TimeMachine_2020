@@ -17,6 +17,9 @@
 	import {Datetime} from 'vue-datetime'
 	const SERVER_URL = 'http://localhost:4000/';
 
+
+	const diff_hours = 'hours' ; 
+	const diff_minutes= 'minutes' ; 
 	export default {
 	name: 'workingtimes',
 	props: {
@@ -62,25 +65,60 @@
 				var date_array_end = [];
 				var date_array_begin = [];
 				var date_array_diff = [];
-				for(let x of args){
-					const regx = /-/gi;
-					var x1 = x.attributes.startTime.replace(regx, '/');//change format from YYYY-MM-DD to YYYY/MM/DD
-					var x2 = x.attributes.endTime.replace(regx , '/');
-					var begin_temp = new Date(x.attributes.startTime);
-					var end_temp = new Date(x.attributes.endTime);
+			
+				console.log(args); 
+				var total_work = {
+					date:[], 
+					work:[], 
 
-					var ms = end_temp.getTime() - begin_temp.getTime();
-					var d = moment.duration(ms);
-					var diff = Math.floor(d.asHours()) ; //+ moment.utc(ms).format(":mm:ss");
-					// temps de travail supérieur a X min
-					if(d.asMinutes() >= 2){
-						date_array_end.push(moment(x.attributes.endTime).format('L'));
-						date_array_begin.push(moment(x.attributes.startTime).format('L'));
-						date_array_diff.push(diff);
+				};
+				for(let x of args){
+					var index = total_work.date.indexOf(moment(x.attributes.startTime).format('YYYY-MM-DD')); 
+					var startTime = moment(x.attributes.startTime);
+					var endTime = moment(x.attributes.endTime); 
+					var diff = endTime.diff(startTime , diff_hours) ; 
+					if(index === -1){
+						total_work.date.push(startTime.format('YYYY-MM-DD')) ; 
+						total_work.work.push(diff); 
+					}
+					else{
+						total_work.work[index] += diff ; 
+
 					}
 				}
 
-				return {date_begin : date_array_begin , date_end : date_array_end , date_diff : date_array_diff} ; 	
+				var sorted = this.sortWorkTime(total_work.date , total_work.work); 
+				return {date_begin : sorted.sorted_date , date_diff:sorted.sorted_work};
+			},
+
+
+			
+			sortWorkTime(date , work){
+				var isSorted = function(arr){
+					for(var i = 0 ; i < arr.length - 1 ; i++){
+						if(moment(arr[i]).isAfter(moment(arr[i+1]))) 
+							return false ; 
+					}
+					return true ; 
+
+				}; 
+
+				while(!isSorted(date)){
+					for(var i = 0 ; i < date.length-1 ; i++){
+						 if(moment(date[i]).isAfter(moment(date[i+1]))) {
+							var after_date = date[i] ;
+							date[i] = date[i+1] ; 
+							date[i+1] = after_date; 
+							
+							var after_work = work[i] ; 
+							work[i] = work[i+1] ; 
+							work[i+1] = after_work ; 
+
+						 }
+
+					}
+				}
+				return {sorted_date: date , sorted_work : work} ; 
 
 			},
 	},
