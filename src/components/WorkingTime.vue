@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
 </template>
 
@@ -8,8 +9,8 @@
       msg: String
     },
     data() {
-  	  return {
-  	  }
+	  return {
+	  }
     }
   }
 </script>

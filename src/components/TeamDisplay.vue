@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
 <div class="teamDisplay">
 	  
@@ -58,7 +59,7 @@ data(){
 	this.weekDates = [];
 	for(var x = 0 ; x < 7 ; x++){
 		var y = moment(begin_week).add(x , 'days') ;
-		this.weekDates.push(y) ; 		
+		this.weekDates.push(y) ;		
 	}
 	this.workingTimesArray = {
 		weekDates:this.weekDates,
@@ -194,7 +195,7 @@ methods:{
 		this.weekDates = [] ; 
 		for(var x = 0 ; x < 7 ; x++){
 			var y = moment(this.beginWeek).add(x , 'days') ;
-			this.weekDates.push(y) ; 		
+			this.weekDates.push(y) ;		
 		}
 
 
@@ -210,7 +211,7 @@ methods:{
 		this.weekDates = [] ; 
 		for(var x = 0 ; x < 7 ; x++){
 			var y = moment(this.beginWeek).add(x , 'days') ;
-			this.weekDates.push(y) ; 		
+			this.weekDates.push(y) ;		
 		}
 		this.getTeamStats(args); 
 
@@ -219,7 +220,7 @@ methods:{
 	processData(args){
 		
 
-		 	
+			
 		var work_stats = {
 			week:this.weekDates,
 			total_work:[0 , 0 , 0 , 0 , 0 , 0 , 0]
@@ -261,7 +262,7 @@ methods:{
 					for(let z of user._date){
 						var idx = this.getIndexFromValue(work_stats.week , z);
 							if(idx != -1){
-								work_stats.total_work[idx] += (user.work).reduce((a,b) => a+b, 0) ; 	
+								work_stats.total_work[idx] += (user.work).reduce((a,b) => a+b, 0) ;	
 
 							}
 					}		

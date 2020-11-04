@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
 	<div>
 		<button id="pointer-button" type="button" v-on:click="onClick"> Pointer </button>
@@ -19,11 +20,11 @@
 	  props: {
 	  },
 	  data() {
-	  	this.fetchUser();
-	  	return {
+		this.fetchUser();
+		return {
 			}
-	 	},
-	 	watch: {
+		},
+		watch: {
 			'$route.params': {
 				handler(newVal) {
 					var id = newVal;
@@ -32,13 +33,13 @@
 				},
 			},
 			immediate: true,
-	 	},
+		},
 
 	  methods: {
 			fetchUser() {
 				//Si l'utilisateur est déja pointé mais que sa session est morte , l'horloge doit afficher le temps écoulé :
 				this.time = undefined ;
-	  		this.status_user = undefined;
+			this.status_user = undefined;
 				axios.get(SERVER_URL + 'api/clocks/' + this.$route.params.userId)
 				.then(response => {
 					this.status_user = response.data.data.attributes.status;
@@ -58,7 +59,7 @@
           console.log(error)
         })
 			},
-	  	onClick() {
+		onClick() {
 				axios.get(SERVER_URL + 'api/clocks/' + this.$route.params.userId)
 				.then(response => {
 					var response_data = response;

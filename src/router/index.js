@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Acceuil_Login from '../components/Acceuil_Login.vue'
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -25,7 +24,25 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import('../components/Manager.vue')
-  }, 
+  },
+  {
+    path: '/workingtimes/:userId' , 
+    name: 'workingtimes',
+    component: () => import('../components/WorkingTimes.vue')
+  },
+
+  {
+   path: '/clocks/:userId' ,
+   name: 'clock',
+   component: () => import ('../components/Clock.vue')
+  },
+
+  {
+   path: '/dashboard' ,
+   name: 'dashboard',
+   component: () => import ('../components/DashBoard.vue')
+   },
+
 ]
 
 const router = new VueRouter({

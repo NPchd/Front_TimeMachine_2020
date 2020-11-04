@@ -1,12 +1,13 @@
+/* eslint-disable */
 <script>
 	import {Line, mixins} from 'vue-chartjs'
 
 	export default {
 		name: 'lineC',
-	 	extends: Line,
-	 	type: Line,
-	 	props: [],
-	 	mixins: [mixins.reactiveProp] ,
+		extends: Line,
+		type: Line,
+		props: [],
+		mixins: [mixins.reactiveProp] ,
 
 		mounted() {
 			this.options = {
@@ -26,20 +27,20 @@
 					}]
 				},
 				layout: {
-		  		padding: {
+				padding: {
 						left: 1,
 						right: 0,
 						bottom: 0,
 						top : 0,
-		  		}
 				}
-	 		}
+				}
+			}
 			this.renderChart(this.chartData  ,this.options)
 		},
 		data() {
 			return {
 			}
-	 	},
+		},
 
 	  methods: {
 			scalePlus() {

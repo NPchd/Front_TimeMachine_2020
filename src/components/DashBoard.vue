@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
 	<div class="dashBoard">
 		<div class="linechart">
@@ -37,11 +38,11 @@
 			userView,
 			pointer,
 	  },
-	 	props: {
+		props: {
 		},
 
 	  data() {
-	  	this.selectedChartBar = true;
+		this.selectedChartBar = true;
 			this.selectedChartDoughnut = false;
 			return {
 				datacollection : {
@@ -56,34 +57,15 @@
 		},
 
 	  methods: {
-	  	update(args){
-				var date_array_end = [];
-				var date_array_begin = [];
-				var date_array_diff = [];
-				for(let x of args){
-					const regx = /-/gi;
-					var x1 = x.attributes.startTime.replace(regx, '/');//change format from YYYY-MM-DD to YYYY/MM/DD
-					var x2 = x.attributes.endTime.replace(regx , '/');
-					var begin_temp = new Date(x.attributes.startTime);
-					var end_temp = new Date(x.attributes.endTime);
+		update(args){	
 
-					var ms = end_temp.getTime() - begin_temp.getTime();
-					var d = moment.duration(ms);
-					var diff = Math.floor(d.asHours()) ; //+ moment.utc(ms).format(":mm:ss");
-					// temps de travail supérieur a X min
-					if(d.asMinutes() >= 2){
-						date_array_end.push(moment(x.attributes.endTime).format('L'));
-						date_array_begin.push(moment(x.attributes.startTime).format('L'));
-						date_array_diff.push(diff);
-					}
-				}
-		 		this.datacollection = {
-					labels: date_array_begin,
+				this.datacollection = {
+					labels: args.date_begin,
 					datasets: [
 					{
 						label:'Working time',
 						backgroundColor:'#900300',
-						data:date_array_diff
+						data:args.date_diff
 					}]
 				}
 				console.log(this.datacollection);

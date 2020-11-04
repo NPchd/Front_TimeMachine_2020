@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
 <div class="TeamDashBoard">
   
@@ -40,7 +41,7 @@ export default {
 
   },
   data(){
-  	this.selectedChartBar = true ;
+	this.selectedChartBar = true ;
 	this.selectedChartDoughnut = false ; 
 	return {
 		datacollection : { labels:[] , datasets:[]}  , 
@@ -54,7 +55,7 @@ mounted(){
  
 
   methods:{
-  	update(args){
+	update(args){
 	
 		
 		console.log(args); 

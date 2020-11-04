@@ -9,7 +9,7 @@
       msg: String
     },
     data() {
-  	  return {
+	  return {
       }
     }
   }

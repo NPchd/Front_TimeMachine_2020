@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
   <div class="userView">
 		<form id="adduser">
@@ -16,12 +17,12 @@
 		<div v-if=" error === 'ok'" :key="error">
 			<form id="updateuser">
 				<p> ID :{{user_id}} <br>
-		    	Team ID : <input type="text" v-model= "changeTeamID" ><br>
-		    	Username : <input type="text" v-model= "changeUsername"><br>
-		    	Mail Address : <input type="text" v-model="changeMail"><br>
-		    	Role : {{changeRole}}
-		    	<select id = "displayChangeList" v-model="changeRoleList" placeholder="select role">
-		    		<option v-for="item in roles" v-bind:key="item"> {{ item }} </option>
+			Team ID : <input type="text" v-model= "changeTeamID" ><br>
+			Username : <input type="text" v-model= "changeUsername"><br>
+			Mail Address : <input type="text" v-model="changeMail"><br>
+			Role : {{changeRole}}
+			<select id = "displayChangeList" v-model="changeRoleList" placeholder="select role">
+				<option v-for="item in roles" v-bind:key="item"> {{ item }} </option>
 					</select><br>
 					<button @click="updateUser({changeUsername, changeMail, changeRoleList, changeTeamID, user_id})">Update User</button>
 					<button @click="deleteUser({user_id})"> Delete the user</button><br>
@@ -45,7 +46,7 @@
 	  props: {
 	  },
 	  data() {
-	  	this.create_user = false;
+		this.create_user = false;
 			this.response = '';
 			this.username = '';
 			this.password = '';

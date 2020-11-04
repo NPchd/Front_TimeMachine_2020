@@ -1,11 +1,12 @@
 
+/* eslint-disable */
 <script>
 	import {Doughnut , mixins} from 'vue-chartjs'
 	export default {
-	 	name : 'doughnut',
-	 	extends: Doughnut,
-	 	type : Doughnut,
-	 	props: [],
+		name : 'doughnut',
+		extends: Doughnut,
+		type : Doughnut,
+		props: [],
 		mounted() {
 			this.options = {
 				responsive:false ,
@@ -16,7 +17,7 @@
 			console.log(this.data);
 			return {
 			}
- 		},
+		},
 		methods: {
 			onResize(chart , size) {
 			},

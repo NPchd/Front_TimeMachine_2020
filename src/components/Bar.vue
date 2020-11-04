@@ -1,12 +1,13 @@
+/* eslint-disable */
 <script>
 	import {Bar,mixins} from 'vue-chartjs'
 
 	export default {
 		name: 'bar',
-	 	extends: Bar,
-	 	type: Bar,
-	 	props: [],
-	 	mixins: [mixins.reactiveProp],
+		extends: Bar,
+		type: Bar,
+		props: [],
+		mixins: [mixins.reactiveProp],
 		mounted() {
 			this.options = {
 				responsive: false,
@@ -17,7 +18,7 @@
 							min: 0,
 							max: 50,
 							stepSize: 4,
-							callback: function(label, index, labels)
+							callback: function(label)
 							{
 								return label + "H";
 							}
@@ -25,23 +26,21 @@
 					}]
 				},
 				layout: {
-		  		padding: {
+				padding: {
 						left: 1,
 						right: 0,
 						bottom: 0,
 						top: 0,
-		  		}
 				}
-	 		}
+				}
+			}
 			this.renderChart(this.chartData, this.options)
-	 	},
-	 	data() {
+		},
+		data() {
 			return {
 			}
-	 	},
-	  methods: {
-			onResize(chart, size) {
-			},
+		},
+		methods: {
 
 			scalePlus() {
 				this.options.scales.yAxes[0].ticks.max += 1;
@@ -52,6 +51,6 @@
 				this.options.scales.yAxes[0].ticks.max -= 1;
 				this.renderChart(this.chartData, this.options);
 			}
-	  },
+		},
 	}
 </script>

@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
   <div class="menuBar">
     <radial-menu
@@ -27,16 +28,16 @@
     },
     data() {
       return {
-  	    items:['Working Times' , 'Working Time' , 'Clock Manager' , 'Chart Manager'],
-  	  }
+	    items:['Working Times' , 'Working Time' , 'Clock Manager' , 'Chart Manager'],
+	  }
     },
     components: {
-  	  RadialMenu,
-  	  RadialMenuItem
+	  RadialMenu,
+	  RadialMenuItem
     },
     methods: {
-  	  handleClick(item) {
-  	  }
+	  handleClick(item) {
+	  }
     },
   }
 </script>
