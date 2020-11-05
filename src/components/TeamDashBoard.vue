@@ -20,7 +20,6 @@
 
 import axios from 'axios'
 import bar from './Bar.vue' 
-import doughnut from './Doughnut.vue' 
 import lineC from './Line.vue'
 import teamdisplay from './TeamDisplay.vue' 
 import moment from 'moment'
@@ -31,7 +30,6 @@ export default {
  
   components:{
 	bar,
-	doughnut, 
 	lineC,
 	teamdisplay
 

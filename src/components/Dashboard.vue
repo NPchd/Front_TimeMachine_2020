@@ -7,6 +7,7 @@
 		<button @click="updateScaleMinus" id="minus">Decrease Scale</button>
 		</div>
 		<workingtimes @workingTimesArray="updateChart" id="workingtimes"/>
+		<button class="navbutton" @click='goBack'> Retourner a l'accueil </button>
 	</div>
 </template>
 
@@ -28,6 +29,7 @@
 			workingtimes,
 			userView,
 			pointer,
+			ModifierInfos
 	  },
 		props: {
 		},
@@ -92,10 +94,16 @@
 		position: relative;
 		bottom: 20%;
 		left: 20%;
+		width:min-content ;
 	}
 	.linechart {
 		position: absolute;
 		width: min-content;
+	}
+	.navbutton{
+		position:relative ; 
+		top:100px; 
+
 	}
 	button {
 		background-color:rgb(19, 112, 112);
