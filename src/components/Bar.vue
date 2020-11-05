@@ -12,26 +12,25 @@
 			this.options = {
 				responsive: false,
 				scales: {
-					yAxes: [
-					{
+					yAxes: [{
 						ticks: {
 							min: 0,
-							max: 50,
+							max: 24,
 							stepSize: 4,
 							callback: function(label)
 							{
-								return label + "H";
+								return label + "h";
 							}
 						}
 					}]
 				},
 				layout: {
-				padding: {
+					padding: {
 						left: 1,
 						right: 0,
 						bottom: 0,
 						top: 0,
-				}
+					}
 				}
 			}
 			this.renderChart(this.chartData, this.options)
@@ -41,15 +40,18 @@
 			}
 		},
 		methods: {
-
 			scalePlus() {
-				this.options.scales.yAxes[0].ticks.max += 1;
-				this.renderChart(this.chartData, this.options);
+				if (this.options.scales.yAxes[0].ticks.max < 24) {
+					this.options.scales.yAxes[0].ticks.max += 1;
+					this.renderChart(this.chartData, this.options);
+				}
 			},
 
 			scaleMinus() {
-				this.options.scales.yAxes[0].ticks.max -= 1;
-				this.renderChart(this.chartData, this.options);
+				if (this.options.scales.yAxes[0].ticks.max > 1) {
+					this.options.scales.yAxes[0].ticks.max -= 1;
+					this.renderChart(this.chartData, this.options);
+				}
 			}
 		},
 	}

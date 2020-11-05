@@ -38,7 +38,7 @@
         },
         mounted() {
             this.cookie_id = Cookies.get("id_cookies")
-            Vue.axios.get('http://localhost:4000/api/users/' + this.cookie_id)
+            Vue.axios.get('http://localhost:8080/api/users/' + this.cookie_id)
             .then(reponse => {
                 this.infos_email = reponse.data.data.attributes.email;
                 this.infos_username=reponse.data.data.attributes.username;
@@ -61,7 +61,7 @@
                     team_id : '',
                     username : '',
                 }
-                Vue.axios.get('http://localhost:4000/api/users/' + this.cookie_id)
+                Vue.axios.get('http://localhost:8080/api/users/' + this.cookie_id)
                 .then(reponse => {
                     console.log(reponse)
                     if(Email != '') {
@@ -77,7 +77,7 @@
                     user.role_id = reponse.data.data.attributes['role-id']
                     user.team_id = reponse.data.data.attributes['team-id']
 
-                    Vue.axios.put('http://localhost:4000/api/users/' + this.cookie_id,
+                    Vue.axios.put('http://localhost:8080/api/users/' + this.cookie_id,
                     {
                         user
                     })

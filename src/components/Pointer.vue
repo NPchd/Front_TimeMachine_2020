@@ -1,22 +1,28 @@
 /* eslint-disable */
 <template>
-	<div>
-		<button id="pointer-button" type="button" v-on:click="onClick"> Pointer </button>
-		<clock ref="ref_clock" :date="time"/>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				<b-button id="pointerButton" type="button" v-on:click="onClick"> Pointer </b-button>
+			</div>
+			<div class="col-sm-6">
+				<Clock id="pointerClock" ref="ref_clock" :date="time"/>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
 	import axios from 'axios'
-	import clock from './Clock.vue'
-	import Cookies from 'js-cookie' 
+	import Clock from './Clock.vue'
+	import Cookies from 'js-cookie'
 	import moment from 'moment'
-	const SERVER_URL = 'http://localhost:4000/';
+	const SERVER_URL = 'http://localhost:8080/';
 
 	export default {
 	  name: 'pointer',
 	  components: {
-			clock,
+			Clock,
 	  },
 	  props: {
 	  },
@@ -28,7 +34,6 @@
 	  immediate: true,
 
 	  methods: {
-	  		
 			fetchUser() {
 				//Si l'utilisateur est déja pointé mais que sa session est morte , l'horloge doit afficher le temps écoulé :
 				this.time = undefined ;
@@ -48,10 +53,10 @@
 						this.$refs.ref_clock.stopTimer();
 					}
 				})
-				.catch(error => {console.log(error)}) ; 
+				.catch(error => {console.log(error)});
 			},
 		onClick() {
-				axios.get(SERVER_URL + 'api/clocks/' + this.$route.params.userId)
+				axios.get(SERVER_URL + 'api/clocks/' + Cookies.get("user_id"))
 				.then(response => {
 					var response_data = response;
 					this.status_user = response.data.data.attributes.status;
@@ -64,7 +69,7 @@
 							}
 						};
 						var headers = { 'Content-Type' : 'application/json'};
-						axios.put(SERVER_URL + 'api/clocks/' + this.$route.params.userId, body,headers)
+						axios.put(SERVER_URL + 'api/clocks/' + Cookies.get("user_id"), body,headers)
 						.then(response => {
 							this.$refs.ref_clock.startTimer();
 							button.style.backgroundColor = 'green';
@@ -80,7 +85,8 @@
 							}
 						};
 						var headers = {'Content-Type': 'application/json'};
-						axios.put(SERVER_URL + 'api/clocks/' + this.$route.params.userId, body, headers)
+						console.log(body);
+						axios.put(SERVER_URL + 'api/clocks/' + Cookies.get("user_id"), body, headers)
 						.then(response => {
 							this.$refs.ref_clock.stopTimer();
 							button.style.backgroundColor = 'red';
@@ -91,19 +97,16 @@
 									endTime: body.clock.time
 								}
 							};
-							axios.post(SERVER_URL + 'api/workingtimes/' + this.$route.params.userId,
+							axios.post(SERVER_URL + 'api/workingtimes/' + Cookies.get("user_id"),
 								postbody,
 								headers
 							)
 							.then(response => {
-								
-
 							})
 							.catch(error => {
 								console.log(error)
 							})
 						})
-						
 					};
 				})
 			}
@@ -113,19 +116,14 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-	#pointer-button {
-		width: min-content ;
-		background-color: red;
+	#pointerButton {
+		width: 100%;
+		height: 100%;
 	}
-	ul {
-	  list-style-type: none;
-	  padding: 0;
-	}
-	li {
-	  display: inline-block;
-	  margin: 0 10px;
-	}
-	a {
-	  color: #42b983;
+	#pointerClock {
+		width:100%;
+		height: 100%;
+		border: 1px solid black;
+		border-radius: 5px;
 	}
 </style>

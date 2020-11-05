@@ -24,7 +24,7 @@ import doughnut from './Doughnut.vue'
 import lineC from './Line.vue'
 import teamdisplay from './TeamDisplay.vue' 
 import moment from 'moment'
-const SERVER_URL = 'http://localhost:4000/' ; 
+const SERVER_URL = 'http://localhost:8080/' ; 
 
 export default {
   name: 'teamdashboard',

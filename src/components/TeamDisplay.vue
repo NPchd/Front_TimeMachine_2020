@@ -31,7 +31,7 @@
 import axios from 'axios'
 import {Datetime} from 'vue-datetime' 
 import moment from 'moment'
-const SERVER_URL = 'http://localhost:4000/' ; 
+const SERVER_URL = 'http://localhost:8080/' ; 
 
 export default {
 name: 'teamdisplay',

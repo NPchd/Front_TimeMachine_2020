@@ -18,10 +18,10 @@
 					{
 						ticks: {
 							min: 0,
-							max: 100,
+							max: 24,
 							stepSize: 2,
 							callback: function(label , index , labels) {
-								return label+"H" ;
+								return label+"h" ;
 							}
 						}
 					}]
@@ -44,12 +44,17 @@
 
 	  methods: {
 			scalePlus() {
-				this.options.scales.yAxes[0].ticks.max += 1;
-				this.renderChart(this.chartData, this.options);
+				if (this.options.scales.yAxes[0].ticks.max < 24) {
+					this.options.scales.yAxes[0].ticks.max += 1;
+					this.renderChart(this.chartData, this.options);
+				}
 			},
-			scaleMinus(){
-				this.options.scales.yAxes[0].ticks.max -= 1;
-				this.renderChart(this.chartData, this.options);
+
+			scaleMinus() {
+				if (this.options.scales.yAxes[0].ticks.max > 1) {
+					this.options.scales.yAxes[0].ticks.max -= 1;
+					this.renderChart(this.chartData, this.options);
+				}
 			}
 	  }
 	}

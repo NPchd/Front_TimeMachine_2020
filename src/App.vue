@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import dashboard from './components/DashBoard.vue'
-import login from './components/Accueil_Login.vue'
+import Dashboard from './components/Dashboard.vue'
+import Login from './components/Login.vue'
 export default {
   name: 'App',
   components: {
-	login,
+	Login,
   }
 }
 </script>

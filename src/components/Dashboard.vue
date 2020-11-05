@@ -1,15 +1,11 @@
 /* eslint-disable */
 <template>
 	<div class="dashBoard">
-		<div class="linechart">
-			<lineC :width="200" :height="200" ref="linechartref" :chart-data="datacollection"></lineC>
-		</div>
 		<div class="barchart">
-			<bar :width="800" :height="400" :chart-data="datacollection" ref="barchartref" v-if="selectedChartBar === true"></bar>
-		<button @click="updateScalePlus" id="plus">Increase Scale </button>
-		<button @click="updateScaleMinus" id="minus" >Decrease Scale </button>
+			<bar :width="800" :height="400" :chart-data="datacollection" ref="barchartref"></bar>
+		<button @click="updateScalePlus" id="plus">Increase Scale</button>
+		<button @click="updateScaleMinus" id="minus">Decrease Scale</button>
 		</div>
-		<pointer class="pointer"/>
 		<workingtimes @workingTimesArray="updateChart" id="workingtimes"/>
 	</div>
 </template>
@@ -19,20 +15,16 @@
 	import moment from 'moment'
 
 	import workingtimes from './WorkingTimes.vue'
-	import doughnut from './Doughnut.vue'
 	import userView from './UserView.vue'
 	import pointer from './Pointer.vue'
-	import lineC from './Line.vue'
 	import bar from './Bar.vue'
 
-	const SERVER_URL = 'http://localhost:4000/' ;
+	const SERVER_URL = 'http://localhost:8080/' ;
 
 	export default {
 	  name: 'dashboard',
 	  components: {
 			bar,
-			doughnut,
-			lineC,
 			workingtimes,
 			userView,
 			pointer,
@@ -41,8 +33,6 @@
 		},
 
 	  data() {
-		this.selectedChartBar = true;
-			this.selectedChartDoughnut = false;
 			return {
 				datacollection : {
 					labels:[],
@@ -56,15 +46,14 @@
 		},
 
 	  methods: {
-		update(args){	
-
+			update(args){
 				this.datacollection = {
-					labels: args.date_begin,
+					labels: args.date,
 					datasets: [
 					{
 						label:'Working time',
 						backgroundColor:'#900300',
-						data:args.date_diff
+						data:args.hours
 					}]
 				}
 				console.log(this.datacollection);
@@ -72,16 +61,6 @@
 
 			updateChart(args) {
 				this.update(args);
-			},
-
-			changeChart() {
-				if(this.selectedChartBar === true) {
-					this.selectedChartBar = false;
-					this.selectedChartDoughnut = true;
-				} else {
-					this.selectedChartBar = true;
-					this.selectedChartDoughnut = false;
-				}
 			},
 
 			updateScalePlus() {
@@ -109,10 +88,6 @@
 		left: 40%;
 		bottom: 500px;
 	}
-	.pointer {
-		position: relative;
-		top: 150px;
-	}
 	.barchart {
 		position: relative;
 		bottom: 20%;
@@ -123,17 +98,6 @@
 		width: min-content;
 	}
 	button {
-		background-color:red;
-	}
-	ul {
-	  list-style-type: none;
-	  padding: 0;
-	}
-	li {
-	  display: inline-block;
-	  margin: 0 10px;
-	}
-	a {
-	  color: #42b983;
+		background-color:rgb(19, 112, 112);
 	}
 </style>

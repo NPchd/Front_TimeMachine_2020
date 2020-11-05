@@ -1,6 +1,6 @@
 /* eslint-disable */
 <template>
-	<div id="stopwatch">
+	<div>
 		{{ formatElapsedTime }}
 	</div>
 </template>
@@ -8,7 +8,7 @@
 <script>
 	import axios from 'axios'
 
-	const SERVER_URL = 'http://localhost:4000/';
+	const SERVER_URL = 'http://localhost:8080/';
 
 	export default {
 	  name: 'clock',
@@ -21,7 +21,6 @@
 				elapsedTime:0,
 			}
 		},
-
 
 		computed: {
 			formatElapsedTime(){
@@ -47,7 +46,7 @@
 		},
 
 	  methods: {
-		startTimer() {
+			startTimer() {
 				if (this.dateFromPointer === undefined) {
 					this.elapsedTime = 0;
 				} else {
@@ -77,21 +76,6 @@
 	}
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-	#stopwatch{
-		position: relative;
-		top : 5%;
-	}
-	ul {
-	  list-style-type: none;
-	  padding: 0;
-	}
-	li {
-	  display: inline-block;
-	  margin: 0 10px;
-	}
-	a {
-	  color: #42b983;
-	}
+
 </style>

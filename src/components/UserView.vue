@@ -39,7 +39,7 @@
 <script>
 	import axios from 'axios'
 
-	const SERVER_URL = 'http://localhost:4000/';
+	const SERVER_URL = 'http://localhost:8080/';
 
 	export default {
 	  name: 'userView',
@@ -111,7 +111,7 @@
 				var header = {
 					headers: {'Content-Type': 'application/json'}
 				};
-				var URL = 'http://localhost:4000/api/users/' + args.user_id;
+				var URL = 'http://localhost:8080/api/users/' + args.user_id;
 				axios.put(URL , data , header)
 				.then(response => {
 					this.response = "User " + response.data.data.attributes.username + " has been modified";

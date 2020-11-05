@@ -1,75 +1,115 @@
 <template>
-    <div>
-        <h1>Welcome in the Time Manager App !</h1>
-        <h2>To reach your account, enter your username and email</h2>
-        <Center>
-            <tr>
-                Username :
-                <input type="text" v-model="username_req" placeholder="MartinM">
-            </tr>
-            <tr>
-                email :
-                <input type="text" v-model="email_req" placeholder="martin.matin@mleh.com">
-            </tr>
-            <tr>
-                <button v-on:click="Login({username_req,email_req})">Login</button>
-            </tr>
-            <tr>
-                Don't have an account yet ? <a href="http://localhost:8080/signup">Create my account !</a>
-            </tr>
-        </Center>
+  <div class="container-fluid">
+    <div class="row">
+      <b-form class="col-sm-8 col-md-6 col-lg-4" id="form">
+        <h1>Log In</h1>
+        <b-form-group
+          id="input-group-1"
+          label="Email"
+          label-for="input-1"
+          label-align="left"
+        >
+          <b-form-input
+            id="input-1"
+            v-model="form.email"
+            type="email"
+            required
+            placeholder="Enter email"
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          id="input-group-2"
+          label="Password"
+          label-for="input-2"
+          label-align="left"
+        >
+          <b-form-input
+            id="input-2"
+            v-model="form.password"
+            type="password"
+            required
+            placeholder="Enter password"
+          ></b-form-input>
+        </b-form-group>
+
+        <b-button block v-on:click="onSubmit" id="button">Continue</b-button>
+      <hr class="solid">
+      <a href='http://localhost:8080/signup'>Sign Up for an account</a>
+      </b-form>
     </div>
+  </div>
 </template>
 
 <script>
-    import Vue from 'vue'
-    import axios from 'axios'
-    import VueAxios from 'vue-axios'
-    import Cookies from 'js-cookie'
+import Vue from 'vue'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+import Cookies from 'js-cookie'
 
-    Vue.use(VueAxios,axios)
-    export default {
-        data() {
-            return{
-                email:'',
-                username:'',
-                username_req:'',
-                email_req:'',
-                role:'',
-                id:''
-            }
-        },
-
-        methods: {
-            async Login(a) {
-                Vue.axios.get('http://localhost:8080/api/users?email=' + a.email_req + '&username=' + a.username_req)
-                .then(reponse1 => {
-                    console.log(reponse1)
-                    this.username=reponse1.data.data.attributes.username;
-                    this.email=reponse1.data.data.attributes.email;
-                    this.role=reponse1.data.data.attributes['role-id'];
-                    this.id=reponse1.data.data.id;
-                    if (this.username === a.username_req && this.email === a.email_req)
-                    {
-                        if (this.role === 1) {
-                            Cookies.set("id_cookies", this.id);
-                            document.location.href="http://localhost:8080/general_manager", "_blank";
-                        } else if (this.role === 2) {
-                            Cookies.set("id_cookies", this.id);
-                            document.location.href="http://localhost:8080/manager", "_blank";
-                        } else if (this.role === 3) {
-                            Cookies.set("id_cookies", this.id);
-                            document.location.href="http://localhost:8080/user", "_blank";
-                        }
-                    }
-                })
-                .catch(
-                    error => {
-                        console.log(error)
-                        alert("Wrong username or email, retry.")
-                    }
-                )
-            }
+Vue.use(VueAxios,axios)
+  export default {
+    data() {
+      return {
+        form : {
+          email:null,
+          password:null
+          },
+        user : {
+          email:null,
+          username:null,
+          role:null,
+          id:null
         }
+      }
+    },
+    //mounted() {
+    //  this.startTime = new Date('2019-09-10T11:00:00Z');
+    //  this.endTime = new Date('2020-10-31T23:00:00Z');
+    //  //console.log(startTime - endTime)
+    //},
+
+  methods: {
+    onSubmit: function() {
+      Vue.axios.post('http://localhost:8080/api/users/login',
+      {
+        email: this.form.email,
+        password: this.form.password
+      },
+      {
+        headers: {
+          "Content-type": "application/json"
+        }
+      })
+      .then(response => {
+        console.log(response);
+        if (response.status === 200) {
+          Cookies.set("username", response.data.data.attributes.username);
+          Cookies.set("role_id", response.data.data.attributes["role-id"]);
+          Cookies.set("user_id", response.data.data.id)
+          this.$router.push('/edituser')
+        }
+      })
+      .catch(error => {
+          console.log(error)
+        })
+      }
     }
+  }
 </script>
+
+<style scoped>
+  #form {
+    margin: auto;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  b-button {
+    background-color: rgb(19, 112, 112);
+  }
+  a {
+    color: rgb(19, 112, 112);
+  }
+</style>
