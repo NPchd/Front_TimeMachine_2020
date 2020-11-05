@@ -137,6 +137,9 @@
 		margin-left: 30%;
 		color: red;
 	}
+	button {
+		background-color:red; 
+	}
 	h3 {
 	  margin: 40px 0 0;
 	}

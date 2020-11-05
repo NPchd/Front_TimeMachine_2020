@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="modifierInfos">
         <p class="infos">Username : {{infos_username}} <br/>Email : {{infos_email}}</p>
         <button class="titre_formulaire" v-on:click="hide_show_form()">Click to change my informations</button>
         <div id="d1" style="display:none" class="formulaire1">
@@ -95,10 +95,14 @@
     .titre_formulaire {
         position: absolute;
         top: 150px;
-        right: 85px;
+        right: 70px;
         color: green;
         font-weight: bold;
         font-size: 20px;
+
+    }
+    .titre_formulaire:hover {
+	background-color:red ; 
     }
     .formulaire1 {
         position: absolute;

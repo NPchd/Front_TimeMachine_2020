@@ -4,6 +4,7 @@
         <ManageTeam/>
         <ModifierInfos/>
 	<teamdashboard/>
+	<button class="navbutton" @click='goBack'>Retourner a l'accueil</button>
     </div>
 </template>
 
@@ -18,6 +19,26 @@
             ManageTeam,
             ModifierInfos,
 	    teamdashboard
-        }
+        }, 
+
+	methods:{
+		goBack(){
+			this.$router.push({name:'login'}) ; 
+		}
+
+
+	}
     }
 </script>
+
+<style>
+.navbutton {
+	background-color:red; 
+	position:relative; 
+	bottom:50% ; 
+
+}
+
+
+
+</style>

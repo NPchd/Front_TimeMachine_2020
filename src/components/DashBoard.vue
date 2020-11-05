@@ -1,6 +1,8 @@
 /* eslint-disable */
 <template>
 	<div class="dashBoard">
+
+		<ModifierInfos/>
 		<div class="linechart">
 			<lineC :width="200" :height="200" ref="linechartref" :chart-data="datacollection"></lineC>
 		</div>
@@ -11,6 +13,7 @@
 		</div>
 		<pointer class="pointer"/>
 		<workingtimes @workingTimesArray="updateChart" id="workingtimes"/>
+		<button class="navbutton" @click='goBack'> Retourner a l'accueil </button>
 	</div>
 </template>
 
@@ -24,7 +27,7 @@
 	import pointer from './Pointer.vue'
 	import lineC from './Line.vue'
 	import bar from './Bar.vue'
-
+    	import ModifierInfos from '../components/ModifierInfos.vue'
 	const SERVER_URL = 'http://localhost:4000/' ;
 
 	export default {
@@ -36,6 +39,7 @@
 			workingtimes,
 			userView,
 			pointer,
+			ModifierInfos
 	  },
 		props: {
 		},
@@ -56,6 +60,11 @@
 		},
 
 	  methods: {
+		goBack(){
+			this.$router.push({name:'login'}); 
+
+		},
+
 		update(args){	
 
 				this.datacollection = {
@@ -111,16 +120,22 @@
 	}
 	.pointer {
 		position: relative;
-		top: 150px;
+		top: 110px;
 	}
 	.barchart {
 		position: relative;
 		bottom: 20%;
 		left: 20%;
+		width:min-content ; 
 	}
 	.linechart {
 		position: absolute;
 		width: min-content;
+	}
+	.navbutton{
+		position:relative ; 
+		top:100px; 
+
 	}
 	button {
 		background-color:red;
