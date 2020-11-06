@@ -126,7 +126,7 @@
               Cookies.set("username", responseLogin.data.data.attributes.username);
               Cookies.set("role_id", responseLogin.data.data.attributes["role-id"]);
               Cookies.set("user_id", responseLogin.data.data.id)
-              this.$router.push('/edituser')
+              this.$router.push('/user')
             }
           })
         })

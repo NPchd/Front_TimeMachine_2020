@@ -48,26 +48,21 @@ import VueAxios from 'vue-axios'
 import Cookies from 'js-cookie'
 
 Vue.use(VueAxios,axios)
-  export default {
-    data() {
-      return {
-        form : {
-          email:null,
-          password:null
-          },
-        user : {
-          email:null,
-          username:null,
-          role:null,
-          id:null
-        }
+export default {
+  data() {
+    return {
+      form : {
+        email:null,
+        password:null
+        },
+      user : {
+        email:null,
+        username:null,
+        role:null,
+        id:null
       }
-    },
-    //mounted() {
-    //  this.startTime = new Date('2019-09-10T11:00:00Z');
-    //  this.endTime = new Date('2020-10-31T23:00:00Z');
-    //  //console.log(startTime - endTime)
-    //},
+    }
+  },
 
   methods: {
     onSubmit: function() {
@@ -87,7 +82,7 @@ Vue.use(VueAxios,axios)
           Cookies.set("username", response.data.data.attributes.username);
           Cookies.set("role_id", response.data.data.attributes["role-id"]);
           Cookies.set("user_id", response.data.data.id)
-          this.$router.push('/edituser')
+          this.$router.push('/user')
         }
       })
       .catch(error => {
