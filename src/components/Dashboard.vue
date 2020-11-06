@@ -17,7 +17,7 @@
 	import pointer from './Pointer.vue'
 	import bar from './Bar.vue'
 
-	const SERVER_URL = 'http://localhost:8080/' ;
+	const SERVER_URL = 'https://localhost:4001/' ;
 
 	export default {
 	  name: 'dashboard',

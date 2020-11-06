@@ -91,7 +91,7 @@ export default {
 
     mounted(){
         this.cookie.user_id = Cookies.get("user_id");
-        Vue.axios.get('http://localhost:8080/api/users/' + this.cookie.user_id)
+        Vue.axios.get('https://localhost:4001/api/users/' + this.cookie.user_id)
         .then(reponse => {
             this.form.username = reponse.data.data.attributes.username
             this.form.email = reponse.data.data.attributes.email
@@ -104,9 +104,9 @@ export default {
         },
         saveEdit() {
             this.cookie.user_id = Cookies.get("user_id")
-            Vue.axios.get('http://localhost:8080/api/users/' + this.cookie.user_id)
+            Vue.axios.get('https://localhost:4001/api/users/' + this.cookie.user_id)
             .then(response => {
-                Vue.axios.put('http://localhost:8080/api/users/' + this.cookie.user_id,
+                Vue.axios.put('https://localhost:4001/api/users/' + this.cookie.user_id,
                 {
                     user : {
                         username: this.form.username,

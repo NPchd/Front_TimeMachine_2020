@@ -35,7 +35,7 @@
 
         <b-button block v-on:click="onSubmit" id="button">Continue</b-button>
       <hr class="solid">
-      <a href='http://localhost:8080/signup'>Sign Up for an account</a>
+      <a href='https://localhost:4001/signup'>Sign Up for an account</a>
       </b-form>
     </div>
   </div>
@@ -71,7 +71,7 @@ Vue.use(VueAxios,axios)
 
   methods: {
     onSubmit: function() {
-      Vue.axios.post('http://localhost:8080/api/users/login',
+      Vue.axios.post('https://localhost:4001/api/users/login',
       {
         email: this.form.email,
         password: this.form.password

@@ -63,7 +63,7 @@
                     team_id: null,
                     username: item.attributes.username
                 }
-                Vue.axios.put('http://localhost:8080/api/users/' + item.id,
+                Vue.axios.put('https://localhost:4001/api/users/' + item.id,
                 {
                     user
                 })

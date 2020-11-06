@@ -1,6 +1,11 @@
+const fs = require('fs');
+
 module.exports = {
   // options...
   devServer:{
-      proxy:'http://localhost:4000/'
-  }
+      https: {
+        key: fs.readFileSync('./cert/selfsigned_key.pem'),
+        cert: fs.readFileSync('./cert/selfsigned.pem')
+      }
+    }
 }
