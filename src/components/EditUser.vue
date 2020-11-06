@@ -145,4 +145,8 @@ export default {
         display: block;
         font-size: 26px;
     }
+    .container-fluid {
+        position: relative;
+        margin: 5%;
+    }
 </style>

@@ -1,10 +1,10 @@
 /* eslint-disable */
 <template>
-	<div class="dashBoard">
+	<div class="dashboard">
 		<div class="barchart">
 			<bar :width="800" :height="400" :chart-data="datacollection" ref="barchartref"></bar>
-		<button @click="updateScalePlus" id="plus">Increase Scale</button>
-		<button @click="updateScaleMinus" id="minus">Decrease Scale</button>
+		<b-button @click="updateScalePlus" id="plus">Increase Scale</b-button>
+		<b-button @click="updateScaleMinus" id="minus">Decrease Scale</b-button>
 		</div>
 		<workingtimes @workingTimesArray="updateChart" id="workingtimes"/>
 	</div>
@@ -14,7 +14,6 @@
 	import axios from 'axios'
 	import moment from 'moment'
 	import workingtimes from './WorkingTimes.vue'
-	import userView from './UserView.vue'
 	import pointer from './Pointer.vue'
 	import bar from './Bar.vue'
 
@@ -25,7 +24,6 @@
 	  components: {
 			bar,
 			workingtimes,
-			userView,
 			pointer,
 	  },
 		props: {
@@ -92,6 +90,7 @@
 		bottom: 20%;
 		left: 20%;
 		width:min-content ;
+		margin:5%;
 	}
 	.linechart {
 		position: absolute;

@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-6">
-				<button id="pointerButton" type="button" v-on:click="onClick"> Pointer </button>
+				<b-button id="pointerButton" type="button" v-on:click="onClick"> Pointer </b-button>
 			</div>
 			<div class="col-sm-6">
 				<Clock id="pointerClock" ref="ref_clock" :date="time"/>
@@ -120,9 +120,10 @@
 		height: 100%;
 	}
 	#pointerClock {
-		width:100%;
+		width: 100%;
 		height: 100%;
 		border: 1px solid black;
 		border-radius: 5px;
+		font-size: 50px;
 	}
 </style>

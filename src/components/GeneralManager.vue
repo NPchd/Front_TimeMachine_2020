@@ -1,13 +1,17 @@
 <template>
     <div id="app">
-        <table>
+         <table class="tableAll">
             <tr>
-                <td>Username</td>
+                <td class="colTitle">Username</td>
             </tr>
-            <tr v-for="item in listUsers" v-bind:key="item.id">
-                <a v-bind:href="'http://localhost:8081/api/users/' + item.id">{{item.attributes.username}}</a>
-                <td><button v-on:click="removeUser(item.id)">Remove user {{item.id}} </button></td>
-                <td v-if="item.attributes['role-id'] == 3"><button v-on:click="updateRole(item)">Upgrade</button></td>
+            <tr v-for="item in list" v-bind:key="item.id">
+                <label>{{item.attributes.username}}</label>
+                <td>
+                    <b-button v-on:click="Remove_User(item)">Remove user {{item.id}}</b-button>
+                </td>
+                <td v-if="item.attributes['role-id'] == 4">
+                    <b-button v-on:click="updateRole(item)">Upgrade</b-button>
+                </td>
             </tr>
         </table>
     </div>
@@ -24,7 +28,7 @@ export default {
     name: 'app',
     data() {
         return {
-          listUsers:null,
+          list:null,
           roleSelected:null,
           user_id:null
         }
@@ -32,7 +36,7 @@ export default {
     mounted() {
         Vue.axios.get('http://localhost:8081/api/users/all')
         .then(response => {
-            this.listUsers = response.data.data
+            this.list = response.data.data
         })
     },
     methods: {
@@ -64,3 +68,17 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+    label {
+        font-size: 26px;
+    }
+    .colTitle {
+        font-size: 26px;
+        font-weight: bold;
+    }
+    .tableAll {
+        margin: 5%;
+
+    }
+</style>

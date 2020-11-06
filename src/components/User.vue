@@ -33,7 +33,7 @@
             </ul>
         </div>
         <div class="header">
-            <p class="welcome">Welcome {{ cookie.username }}</p>
+            <small class="welcome">Welcome {{ cookie.username }}</small>
             <Pointer class="pointer"></Pointer>
             <a id="log_out" style="color:#95a5a6; text-decoration:none" v-on:click="disconnect()">
                 <img class="disconnect" src="../assets/exit.png" alt="">
@@ -88,7 +88,7 @@ export default {
             this.editUser = false;
             this.manageTeam = false;
             this.workingTime = false;
-            this.manageTeamAll = false;
+            this.manageAll = false;
 
             switch (component){
                 case "EditUser":
@@ -101,16 +101,16 @@ export default {
                     this.workingTime = true;
                     break;
                 case "ManageAll":
-                    this.manageTeamAll = true;
+                    this.manageAll = true;
                     break;
             }
         },
         disconnect() {
-            //Cookies.remove("_timemanager_key");
-            //Cookies.remove("role_id");
-            //Cookies.remove("user_id");
-            //Cookies.remove("username");
-            //this.$router.push('/');
+            Cookies.remove("_timemanager_key");
+            Cookies.remove("role_id");
+            Cookies.remove("user_id");
+            Cookies.remove("username");
+            this.$router.push('/');
         }
     }
 }
@@ -184,7 +184,7 @@ export default {
 /*header*/
 .header{
     position: absolute;
-    top:0;
+    top:0px;
     left:15%;
     right:0;
     height: 15%;
@@ -212,24 +212,22 @@ export default {
 }
 .pointer{
     position: absolute;
-    top:50%;
-    left: 15%;
+    top:30%;
+    width: 90%;
 }
 
 .body{
     position:absolute;
-    align-self: center;
     top:15%;
-    height:100%;
-    width:100%;
+    left:15%;
+    width:85%;
+    height: auto;
     justify-content: left;
-    border-top:2px solid #34495e;
+    border-top: 2px solid #34495e;
 }
 .component {
+    width: 85%;
     position: absolute;
-    top:15%;
-    width:100%;
-    height: 100%;
 }
 
 @media only screen and (max-width: 1026px) {
