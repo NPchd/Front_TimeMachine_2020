@@ -15,7 +15,7 @@
                 <button class="button" v-on:click="component_display('EditUser')" style="color:#95a5a6; text-decoration:none">
                     <p class="nav_item">
                         <img class="img_sidebar" src="../assets/change_info.png" alt="">
-                        <label class="editUserLabel">Edit my infos</label>
+                        <label class="editUserLabel">Edit my informations</label>
                     </p>
                 </button>
                 <button class="button" v-on:click="component_display('ManageTeam')" style="color:#95a5a6; text-decoration:none">
@@ -35,15 +35,17 @@
         <div class="header">
             <p class="welcome">Welcome {{ cookie.username }}</p>
             <Pointer class="pointer"></Pointer>
-            <a id="log_out" href="#" style="color:#95a5a6; text-decoration:none">
+            <a id="log_out" style="color:#95a5a6; text-decoration:none" v-on:click="disconnect()">
                 <img class="disconnect" src="../assets/exit.png" alt="">
             </a>
         </div>
         <div class="body">
-            <p v-if="editUser == true"><EditUser style="display:block"/></p>
-            <p v-if="manageTeam == true"><ManageTeam style="display:block"/></p>
-            <p v-if="manageAll == true"><ManageAll style="display:block"/></p>
-            <p v-if="workingTime == true"><Dashboard style="display:block"/></p>
+            <div class="component">
+                <p v-if="editUser == true"><EditUser style="display:block"/></p>
+                <p v-if="manageTeam == true"><ManageTeam style="display:block"/></p>
+                <p v-if="manageAll == true"><ManageAll style="display:block"/></p>
+                <p v-if="workingTime == true"><Dashboard style="display:block"/></p>
+            </div>
         </div>
     </div>
 </template>
@@ -57,6 +59,7 @@ import Pointer from '../components/Pointer.vue'
 import Clock from '../components/Clock.vue'
 
 import Cookies from 'js-cookie'
+
 
 export default {
     name:'User',
@@ -74,48 +77,40 @@ export default {
             editUser: false,
             manageTeam: false,
             manageAll: false,
-            cookie : {
-                username:null,
-                user_id:null
-            },
+            cookie: {
+                username: Cookies.get("username"),
+                user_id: Cookies.get("user_id"),
+            }
         }
-    },
-    mounted() {
-        this.cookie.username = Cookies.get("username");
-        this.cookie.user_id = Cookie.get("id");
     },
     methods: {
         component_display(component){
-            this.modifier_infos_component = false;
-            this.manage_team_component = false;
-            this.working_time = false;
+            this.editUser = false;
+            this.manageTeam = false;
+            this.workingTime = false;
+            this.manageTeamAll = false;
 
             switch (component){
                 case "EditUser":
                     this.editUser = true;
-                    this.manageTeamComponent = false;
-                    this.workingTime = false;
-                    this.manageTeamAll = false;
                     break;
                 case "ManageTeam":
-                    this.editUser = false;
-                    this.manageTeamComponent = true;
-                    this.workingTime = false;
-                    this.manageTeamAll = false;
+                    this.manageTeam = true;
                     break;
                 case "WorkingTime":
-                    this.editUser = false;
-                    this.manageTeamComponent = false;
                     this.workingTime = true;
-                    this.manageTeamAll = false;
                     break;
                 case "ManageAll":
-                    this.editUser = false;
-                    this.manageTeamComponent = false;
-                    this.workingTime = false;
                     this.manageTeamAll = true;
                     break;
             }
+        },
+        disconnect() {
+            //Cookies.remove("_timemanager_key");
+            //Cookies.remove("role_id");
+            //Cookies.remove("user_id");
+            //Cookies.remove("username");
+            //this.$router.push('/');
         }
     }
 }
@@ -223,12 +218,18 @@ export default {
 
 .body{
     position:absolute;
+    align-self: center;
     top:15%;
-    left: 15%;
     height:100%;
     width:100%;
     justify-content: left;
     border-top:2px solid #34495e;
+}
+.component {
+    position: absolute;
+    top:15%;
+    width:100%;
+    height: 100%;
 }
 
 @media only screen and (max-width: 1026px) {

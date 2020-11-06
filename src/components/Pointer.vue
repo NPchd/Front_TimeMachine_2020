@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-6">
-				<b-button id="pointerButton" type="button" v-on:click="onClick"> Pointer </b-button>
+				<button id="pointerButton" type="button" v-on:click="onClick"> Pointer </button>
 			</div>
 			<div class="col-sm-6">
 				<Clock id="pointerClock" ref="ref_clock" :date="time"/>
@@ -38,18 +38,18 @@
 				//Si l'utilisateur est déja pointé mais que sa session est morte , l'horloge doit afficher le temps écoulé :
 				this.time = undefined ;
 				this.status_user = undefined;
-				axios.get(SERVER_URL + 'api/clocks/' + this.$route.params.userId)
+				axios.get(SERVER_URL + 'api/clocks/' + Cookies.get("user_id"))
 				.then(response => {
 					this.status_user = response.data.data.attributes.status;
-					var button = document.getElementById('pointer-button');
+					//var button = document.getElementById('pointer-button');
 					if (this.status_user === true) {
-						button.style.backgroundColor = 'green';
+						//button.style.backgroundColor = 'green';
 						var d_date = new Date(response.data.data.attributes.time);
 						this.time = d_date;
 						this.$refs.ref_clock.dateFromPointer = this.time;
 						this.$refs.ref_clock.startTimer();
 					} else {
-						button.style.backgroundColor = 'red';
+						//button.style.backgroundColor = 'red';
 						this.$refs.ref_clock.stopTimer();
 					}
 				})
@@ -69,10 +69,9 @@
 							}
 						};
 						var headers = { 'Content-Type' : 'application/json'};
-						axios.put(SERVER_URL + 'api/clocks/' + Cookies.get("user_id"), body,headers)
+						axios.put(SERVER_URL + 'api/clocks/' + Cookies.get("user_id"), body, headers)
 						.then(response => {
 							this.$refs.ref_clock.startTimer();
-							button.style.backgroundColor = 'green';
 						})
 						.catch(error => {
 							console.log(error);
@@ -89,7 +88,7 @@
 						axios.put(SERVER_URL + 'api/clocks/' + Cookies.get("user_id"), body, headers)
 						.then(response => {
 							this.$refs.ref_clock.stopTimer();
-							button.style.backgroundColor = 'red';
+							//button.style.backgroundColor = 'red';
 							//post request to add the working time
 							var postbody = {
 								working_time: {

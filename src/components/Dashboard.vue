@@ -7,14 +7,12 @@
 		<button @click="updateScaleMinus" id="minus">Decrease Scale</button>
 		</div>
 		<workingtimes @workingTimesArray="updateChart" id="workingtimes"/>
-		<button class="navbutton" @click='goBack'> Retourner a l'accueil </button>
 	</div>
 </template>
 
 <script>
 	import axios from 'axios'
 	import moment from 'moment'
-
 	import workingtimes from './WorkingTimes.vue'
 	import userView from './UserView.vue'
 	import pointer from './Pointer.vue'
@@ -29,7 +27,6 @@
 			workingtimes,
 			userView,
 			pointer,
-			ModifierInfos
 	  },
 		props: {
 		},
@@ -101,8 +98,8 @@
 		width: min-content;
 	}
 	.navbutton{
-		position:relative ; 
-		top:100px; 
+		position:relative ;
+		top:100px;
 
 	}
 	button {

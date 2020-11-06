@@ -12,7 +12,6 @@
 
 	export default {
 	  name: 'clock',
-
 	  data() {
 			this.date = undefined;
 			this.dateFromPointer = undefined;
@@ -33,15 +32,15 @@
 				var day, hour, minute, seconds;
 				seconds = Math.floor(milliseconds / 1000);
 				minute = Math.floor(seconds / 60);
-					seconds = seconds % 60;
+				seconds = seconds % 60;
 				hour = Math.floor(minute / 60);
 				minute = minute % 60;
 				day = Math.floor(hour / 24);
 				hour = hour % 24;
-					var format_sec = seconds < 10 ? '0' + seconds : seconds;
-					var format_min = minute < 10 ? '0' + minute : minute;
-					var format_hour = hour < 10 ? '0' + hour : hour;
-					return format_hour + ':' + format_min + ':' + format_sec;
+				var format_sec = seconds < 10 ? '0' + seconds : seconds;
+				var format_min = minute < 10 ? '0' + minute : minute;
+				var format_hour = hour < 10 ? '0' + hour : hour;
+				return format_hour + ':' + format_min + ':' + format_sec;
 			}
 		},
 

@@ -1,7 +1,5 @@
 <template>
     <div class="container-fluid">
-        <p>Bienvenue {{ cookie.username }} </p>
-        <a href='http://localhost:8080/' v-on:click="disconnect">Disconect</a>
         <div class="row">
             <b-form class="col-sm-8 col-md-6 col-lg-4" id="form">
                 <h1>User details</h1>
@@ -21,6 +19,7 @@
                     ></b-form-input>
                     <label
                         v-if ="!editView"
+                        label-align="left"
                     >{{ form.username }}</label>
                 </b-form-group>
 
@@ -39,6 +38,7 @@
                         placeholder="Email"
                     ></b-form-input>
                     <label v-if ="!editView"
+                    label-align="left"
                     > {{ form.email }} </label>
                 </b-form-group>
 
@@ -90,8 +90,7 @@ export default {
     },
 
     mounted(){
-        this.cookie.username = Cookies.get("username");
-        this.cookie.user_id = 1;
+        this.cookie.user_id = Cookies.get("user_id");
         Vue.axios.get('http://localhost:8080/api/users/' + this.cookie.user_id)
         .then(reponse => {
             this.form.username = reponse.data.data.attributes.username
@@ -138,8 +137,12 @@ export default {
     b-button {
         background-color: rgb(19, 112, 112);
     }
+    b-form-group {
+        display: block;
+    }
     label {
         text-align: left;
-        float: left;
+        display: block;
+        font-size: 26px;
     }
 </style>

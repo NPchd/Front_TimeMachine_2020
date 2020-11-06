@@ -6,7 +6,7 @@
     :itemSize="50"
     :radius="150"
     :angle-restriction="180">
-      <radial-menu-item 
+      <radial-menu-item
       v-for="(item, index) in items"
       :key="index"
       style="background-color: white"
