@@ -18,13 +18,13 @@
                         <label class="editUserLabel">Edit my informations</label>
                     </p>
                 </button>
-                <button class="button" v-on:click="component_display('ManageTeam')" style="color:#95a5a6; text-decoration:none" v-if="role_id <= 3">
+                <button class="button" v-on:click="component_display('ManageTeam')" style="color:#95a5a6; text-decoration:none" v-if="cookie.role_id <= 3">
                     <p class="nav_item">
                         <img class="img_sidebar" src="../assets/liste.png" alt="">
                         <label class="manageTeamLabel">Manage my team</label>
                     </p>
                 </button>
-                <button class="button" v-on:click="component_display('ManageAll')" style="color:#95a5a6; text-decoration:none" v-if="role_id <= 2">
+                <button class="button" v-on:click="component_display('ManageAll')" style="color:#95a5a6; text-decoration:none" v-if="cookie.role_id <= 2">
                     <p class="nav_item">
                         <img class="img_sidebar" src="../assets/liste.png" alt="">
                         <label class="manageAllLabel">Manage all users</label>
