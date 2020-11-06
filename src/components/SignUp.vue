@@ -50,7 +50,7 @@
 
         <b-button block v-on:click="checkForm" id="button">Continue</b-button>
       <hr class="solid">
-      <a href='http://localhost:8080/'>Already have an account ? Log In</a>
+      <a href='https://localhost:4001/'>Already have an account ? Log In</a>
       </b-form>
     </div>
   </div>
@@ -93,7 +93,7 @@
     },
     methods: {
       submitUser: function() {
-        Vue.axios.post('http://localhost:8080/api/users',
+        Vue.axios.post('https://localhost:4001/api/users',
         {
           user : {
             username: this.form.username,
@@ -109,7 +109,7 @@
         .then(response => {
           console.log(response);
           console.log("User created !");
-          Vue.axios.post('http://localhost:8080/api/users/login',
+          Vue.axios.post('https://localhost:4001/api/users/login',
           {
             email: this.form.email,
             password: this.form.password

@@ -17,7 +17,7 @@
 	import Clock from './Clock.vue'
 	import Cookies from 'js-cookie'
 	import moment from 'moment'
-	const SERVER_URL = 'http://localhost:8080/';
+	const SERVER_URL = 'https://localhost:4001/';
 
 	export default {
 	  name: 'pointer',

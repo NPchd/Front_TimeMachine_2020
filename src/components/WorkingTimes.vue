@@ -17,7 +17,7 @@
 	import {Datetime} from 'vue-datetime'
 	import Cookie from 'js-cookie'
 
-	const SERVER_URL = 'http://localhost:8080/';
+	const SERVER_URL = 'https://localhost:4001/';
 
 	export default {
 	name: 'workingtimes',
