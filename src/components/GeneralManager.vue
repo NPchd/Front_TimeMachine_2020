@@ -2,7 +2,7 @@
     <div id="app">
          <table class="tableAll">
             <tr>
-                <td class="colTitle">Username</td>
+                <td class="colTitle" v-if="display">Username</td>
             </tr>
             <tr v-for="item in list" v-bind:key="item.id">
                 <label>{{item.attributes.username}}</label>
@@ -30,13 +30,17 @@ export default {
         return {
           list:null,
           roleSelected:null,
-          user_id:null
+          user_id:null,
+          display: false,
         }
     },
     mounted() {
         Vue.axios.get('http://localhost:8081/api/users/all')
         .then(response => {
             this.list = response.data.data
+            if (response.data.length > 0) {
+                this.display = true;
+            }
         })
     },
     methods: {

@@ -2,7 +2,7 @@
     <div class="dashboardTeam">
         <table class="tableTeam">
             <tr>
-                <td class="colTitle">Username</td>
+                <td class="colTitle" v-if="display">Username</td>
             </tr>
             <tr v-for="item in list" v-bind:key="item.id">
                 <label>{{item.attributes.username}}</label>
@@ -42,17 +42,17 @@
 				},
               list:'',
               team:'',
-              empty: true,
+              display: false,
             }
         },
         mounted() {
             var team_id = Cookies.get("user_id");
             Vue.axios.get('http://localhost:8080/api/users/teams/' + team_id)
             .then(reponse => {
-                if (response.status === 200) {
-                    empty = false;
-                    this.list = reponse.data.data
+                if (response.data.length > 0) {
+                    this.display = true;
                 }
+                this.list = reponse.data.data
             })
         },
         methods: {
